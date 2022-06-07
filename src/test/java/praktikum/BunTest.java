@@ -9,6 +9,7 @@ import org.junit.runners.Parameterized;
 public class BunTest {
 
     private final SoftAssertions softAssertions = new SoftAssertions();
+    static Database database = new Database();
 
     @Parameterized.Parameter
         public String nameBun;
@@ -27,7 +28,10 @@ public class BunTest {
         return new Object[][]{
                 {"Galaxy", 1000, "Galaxy", 1000},
                 {"миндальная", 300.99f, "миндальная", 300.99f},
-                };
+                {database.availableBuns().get(0).getName(), database.availableBuns().get(0).getPrice(), "black bun", 100},
+                {database.availableBuns().get(1).getName(), database.availableBuns().get(1).getPrice(), "white bun", 200},
+                {database.availableBuns().get(2).getName(), database.availableBuns().get(2).getPrice(), "red bun", 300},
+        };
     }
 
     @Test

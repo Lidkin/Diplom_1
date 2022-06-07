@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class BurgerPriceTest {
 
     Burger burger = new Burger();
+    static Database database = new Database();
 
     @Before
     public void init() {
@@ -51,9 +52,12 @@ public class BurgerPriceTest {
         return new Object[][]{
                 {new Ingredient(IngredientType.SAUCE, "Dino", 300), null, null, 300, 1000, "Cosmic", 1, 300+2*1000},
                 {new Ingredient(IngredientType.SAUCE, "Cosmic", 200), new Ingredient(IngredientType.FILLING,
-                        "salmon", 555.99f), null, 200+555.99f, 900, "Stellar", 2, 755.99f+900*2},
+                        "salmon", 555.99f), null, 200+555.99f, 900, "Stellar", 2, 755.99f+2*900},
                 {new Ingredient(IngredientType.FILLING, "баранина", 500), new Ingredient(IngredientType.FILLING,
                         "сыр", 105), new Ingredient(IngredientType.SAUCE, "медовый", 300), 500+300+105, 400, "гречишная", 3, 905+2*400},
+                {database.availableIngredients().get(0), null, null, 100, 1000, "Cosmic", 1, 100+2*1000},
+                {database.availableIngredients().get(1), database.availableIngredients().get(3), null, 200+100, 900, "Stellar", 2, 300+2*900},
+                {database.availableIngredients().get(2), database.availableIngredients().get(4), database.availableIngredients().get(5), 300+200+300, 400, "гречишная", 3, 800+2*400},
         };
     }
 
